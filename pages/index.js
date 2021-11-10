@@ -1,5 +1,7 @@
 import Head from 'next/head'
 
+import { EditorSlate } from '../components/Editor'
+
 export default function Home() {
   return (
     <div className='flex flex-col items-center justify-center min-h-screen py-2'>
@@ -20,7 +22,9 @@ export default function Home() {
           </code>
         </p>
 
-        <div className='flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full'></div>
+        <section className='mt-10'>
+          <EditorSlate />
+        </section>
       </main>
     </div>
   )
