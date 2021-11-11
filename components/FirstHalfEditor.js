@@ -23,7 +23,13 @@ export const FirstHalf = () => {
 
   return (
     <Slate editor={editor} value={val} onChange={(newVal) => setVal(newVal)}>
-      <Editable />
+      <Editable
+        // ! Warning: Extra attributes from the server: spellcheck,autocorrect,autocapitalize
+        // * https://github.com/ianstormtaylor/slate/issues/714
+        autoCapitalize='false'
+        autoCorrect='false'
+        spellCheck='false'
+      />
     </Slate>
   )
 }
