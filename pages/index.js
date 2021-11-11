@@ -1,12 +1,13 @@
 import Head from 'next/head'
 
+import { FirstHalf } from '../components/FirstHalfEditor'
 import { EditorSlate } from '../components/Editor'
 
 export default function Home() {
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen py-2'>
+    <div className='min-h-screen py-16'>
       <Head>
-        <title>Create Next App</title>
+        <title>SlateJS + NextJS</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
@@ -22,7 +23,14 @@ export default function Home() {
           </code>
         </p>
 
-        <section className='mt-10'>
+        <section className='max-w-md mt-16'>
+          <h2 className='text-2xl font-semibold'>First Half</h2>
+          <div className='w-full px-4 py-2 mt-2 border border-gray-500 rounded-md'>
+            <FirstHalf />
+          </div>
+        </section>
+        <section className='mt-16'>
+          <h2 className='text-2xl font-semibold'>Second Half</h2>
           <EditorSlate />
         </section>
       </main>

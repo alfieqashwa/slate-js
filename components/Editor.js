@@ -1,4 +1,3 @@
-// @refresh reset
 import { useCallback, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { createEditor, Transforms, Editor, Text } from 'slate'
