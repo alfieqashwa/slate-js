@@ -102,7 +102,7 @@ export const SecondHalf = () => {
           autoCapitalize='false'
           autoCorrect='false'
           spellCheck='true'
-          placeholder='Please write something...'
+          placeholder='Edit this...'
           editor={editor}
           renderElement={renderElement}
           renderLeaf={renderLeaf}

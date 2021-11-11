@@ -29,7 +29,7 @@ export const FirstHalf = () => {
         autoCapitalize='false'
         autoCorrect='false'
         spellCheck='true'
-        placeholder='Edit this...!'
+        placeholder='Edit this...'
       />
     </Slate>
   )
