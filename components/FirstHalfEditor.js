@@ -5,7 +5,7 @@ import { Editable, Slate, withReact } from 'slate-react'
 const initialValue = [
   {
     type: 'paragraph',
-    children: [{ text: 'Edit this paragraph...' }],
+    children: [{ text: 'Try to edit this paragraph...' }],
   },
 ]
 

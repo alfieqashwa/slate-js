@@ -23,9 +23,9 @@ export default function Home() {
           </code>
         </p>
 
-        <section className='max-w-md mt-16'>
-          <h2 className='text-2xl font-semibold'>First Half</h2>
-          <div className='w-full px-4 py-2 mt-2 border border-gray-500 rounded-md'>
+        <section className='max-w-lg mt-16'>
+          <h2 className='text-2xl font-semibold text-gray-600'>First Half</h2>
+          <div className='w-full px-4 py-2 mt-2 text-gray-700 border-2 border-gray-500 rounded-md bg-gray-50'>
             <FirstHalf />
           </div>
         </section>
