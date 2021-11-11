@@ -1,11 +1,11 @@
 import Head from 'next/head'
 
-import { FirstHalf } from '../components/FirstHalfEditor'
-import { EditorSlate } from '../components/Editor'
+import { FirstHalf } from '../components/FirstHalf'
+import { SecondHalf } from '../components/SecondHalf'
 
 export default function Home() {
   return (
-    <div className='min-h-screen py-16'>
+    <div className='min-h-screen py-16 bg-gray-200'>
       <Head>
         <title>SlateJS + NextJS</title>
         <link rel='icon' href='/favicon.ico' />
@@ -15,23 +15,15 @@ export default function Home() {
         <h1 className='text-6xl font-bold'>
           Start <span className='text-blue-600'>Slate.js!</span>
         </h1>
-
-        <p className='mt-3 text-2xl'>
-          Get started by editing{' '}
-          <code className='p-3 font-mono text-lg bg-gray-100 rounded-md'>
-            pages/index.js
-          </code>
-        </p>
-
-        <section className='max-w-lg mt-16'>
-          <h2 className='text-2xl font-semibold text-gray-600'>First Half</h2>
-          <div className='w-full px-4 py-2 mt-2 text-gray-700 border-2 border-gray-500 rounded-md bg-gray-50'>
+        <section className='w-1/4 max-w-lg mt-16'>
+          <h2 className='text-2xl font-semibold text-gray-700'>First Half</h2>
+          <div className='w-full px-4 py-2 mt-2 text-gray-500 border-2 border-gray-300 rounded-md shadow-md bg-gray-50'>
             <FirstHalf />
           </div>
         </section>
-        <section className='mt-16'>
-          <h2 className='text-2xl font-semibold'>Second Half</h2>
-          <EditorSlate />
+        <section className='max-w-full mt-16'>
+          <h2 className='text-2xl font-semibold text-gray-700'>Second Half</h2>
+          <SecondHalf />
         </section>
       </main>
     </div>

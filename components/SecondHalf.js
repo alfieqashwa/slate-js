@@ -11,7 +11,7 @@ import { Editable, Slate, withReact } from 'slate-react'
 const initialValue = [
   {
     type: 'paragraph',
-    children: [{ text: 'A line of text in a paragraph.' }],
+    children: [{ text: 'A line of text in a paragraph...' }],
   },
 ]
 
@@ -55,8 +55,9 @@ const CustomEditor = {
   },
 }
 
-export const EditorSlate = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+export const SecondHalf = () => {
+  // const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
   const [value, setValue] = useState(initialValue)
 
   // `useCallback` here to memoize the function for subsequent renders.
@@ -75,52 +76,57 @@ export const EditorSlate = () => {
 
   return (
     <Slate editor={editor} value={value} onChange={(v) => setValue(v)}>
-      <div>
+      <div className='mt-4 space-x-4'>
         <button
+          className='px-3 py-1 transition duration-300 ease-in-out bg-white rounded hover:shadow-md hover:bg-gray-100'
           onMouseDown={(e) => {
             e.preventDefault()
             CustomEditor.toggleBoldMark(editor)
           }}
         >
-          Bold
+          <h6 className='text-xs'>Bold</h6>
         </button>
         <button
+          className='px-3 py-1 transition duration-300 ease-in-out bg-white rounded hover:shadow-md hover:bg-gray-100'
           onMouseDown={(e) => {
             e.preventDefault()
             CustomEditor.toggleCodeBlock(editor)
           }}
         >
-          Code Block
+          <h6 className='text-xs'>Code Block</h6>
         </button>
       </div>
-      <Editable
-        // ! https://github.com/ianstormtaylor/slate/issues/714
-        autoCapitalize='false'
-        autoCorrect='false'
-        spellCheck='false'
-        editor={editor}
-        renderElement={renderElement}
-        renderLeaf={renderLeaf}
-        onKeyDown={(event) => {
-          if (!event.ctrlKey) {
-            return
-          }
+      <div className='w-full px-4 py-2 mt-1 text-gray-500 border-2 border-gray-300 rounded-md shadow-md bg-gray-50'>
+        <Editable
+          // ! https://github.com/ianstormtaylor/slate/issues/714
+          autoCapitalize='false'
+          autoCorrect='false'
+          spellCheck='true'
+          placeholder='Please write something...'
+          editor={editor}
+          renderElement={renderElement}
+          renderLeaf={renderLeaf}
+          onKeyDown={(event) => {
+            if (!event.ctrlKey) {
+              return
+            }
 
-          switch (event.key) {
-            case '`': {
-              event.preventDefault()
-              CustomEditor.toggleCodeBlock(editor)
-              break
+            switch (event.key) {
+              case '`': {
+                event.preventDefault()
+                CustomEditor.toggleCodeBlock(editor)
+                break
+              }
+              case 'b': {
+                event.preventDefault()
+                CustomEditor.toggleBoldMark(editor)
+                break
+              }
             }
-            case 'b': {
-              event.preventDefault()
-              CustomEditor.toggleBoldMark(editor)
-              break
-            }
-          }
-          console.log(event.key)
-        }}
-      />
+            console.log(event.key)
+          }}
+        />
+      </div>
     </Slate>
   )
 }

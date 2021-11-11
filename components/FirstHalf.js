@@ -28,7 +28,8 @@ export const FirstHalf = () => {
         // * https://github.com/ianstormtaylor/slate/issues/714
         autoCapitalize='false'
         autoCorrect='false'
-        spellCheck='false'
+        spellCheck='true'
+        placeholder='Edit this...!'
       />
     </Slate>
   )
