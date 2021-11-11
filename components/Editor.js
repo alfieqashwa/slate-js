@@ -1,6 +1,20 @@
+// @refresh reset
 import { useCallback, useMemo, useState } from 'react'
-import { createEditor, Editor, Transforms, Text } from 'slate'
+import dynamic from 'next/dynamic'
+import { createEditor, Transforms, Editor, Text } from 'slate'
 import { Editable, Slate, withReact } from 'slate-react'
+
+// const Editor = dynamic(() => import('slate').then((module) => module.Editor), {
+//   ssr: false,
+// })
+
+// ! https://github.com/ianstormtaylor/slate/issues/3477
+const initialValue = [
+  {
+    type: 'paragraph',
+    children: [{ text: 'A line of text in a paragraph.' }],
+  },
+]
 
 const CustomEditor = {
   isBoldMarkActive(editor) {
@@ -32,6 +46,10 @@ const CustomEditor = {
     const isActive = CustomEditor.isCodeBlockActive(editor)
     Transforms.setNodes(
       editor,
+      // {
+      //   anchor: { path: [0, 0], offset: 0 },
+      //   focus: { path: [0, 0], offset: 0 },
+      // },
       { type: isActive ? null : 'code' },
       { match: (n) => Editor.isBlock(editor, n) }
     )
@@ -40,12 +58,7 @@ const CustomEditor = {
 
 export const EditorSlate = () => {
   const editor = useMemo(() => withReact(createEditor()), [])
-  const [value, setValue] = useState([
-    {
-      type: 'paragraph',
-      children: [{ text: 'A line of text in a paragraph.' }],
-    },
-  ])
+  const [value, setValue] = useState(initialValue)
 
   // `useCallback` here to memoize the function for subsequent renders.
   const renderElement = useCallback((props) => {
@@ -82,6 +95,10 @@ export const EditorSlate = () => {
         </button>
       </div>
       <Editable
+        // ! https://github.com/ianstormtaylor/slate/issues/714
+        autoCapitalize='false'
+        autoCorrect='false'
+        spellCheck='false'
         editor={editor}
         renderElement={renderElement}
         renderLeaf={renderLeaf}
